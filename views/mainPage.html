@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice to Text</title>
+</head>
+
+<body>
+    <button id="startRecognition">Start Recognition</button>
+    <p id="textData"></p>
+    <script>
+        const start = document.getElementById('startRecognition');
+        const textData = document.getElementById('textData');
+        start.addEventListener('click', async () => {
+            const recognition = new webkitSpeechRecognition();
+            recognition.onresult = async ({ results }) => {
+                const recognizedText = results[0][0].transcript;
+                textData.textContent = recognizedText;
+            };
+            recognition.start();
+        });
+
+    </script>
+</body>
+
+</html>
