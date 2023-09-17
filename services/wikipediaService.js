@@ -19,7 +19,6 @@ async function searchWikipedia(query, maxLines = 5) {
         const fullText = $('p').text();
         const lines = fullText.split('\n').slice(0, maxLines);
         return {
-            title: title,
             content: lines.join('\n'),
         };
     } catch (error) {

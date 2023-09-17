@@ -5,60 +5,75 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="https://icon-library.com/images/icon-ai/icon-ai-3.jpg" type="image/x-icon">
-    <title>virtual Assistant</title>
+    <title>Virtual Assistant</title>
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Mooli&display=swap");
         @import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@1,100&display=swap");
 
         * {
-            padding: 0px;
-            margin: 0px;
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
         }
 
         body {
             background-image: url("https://cdn.wallpapersafari.com/75/48/WLE4hk.png");
             background-repeat: no-repeat;
             background-size: cover;
+            font-family: "Work Sans", sans-serif;
         }
 
         .mainContent {
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-top: 227px;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
         }
 
-        #startRecognition {
-            width: 133px;
-            height: 46px;
-            background-color: rgb(204, 130, 219);
-            border-radius: 12px;
-            color: white;
-            margin-bottom: 15px;
+        h1 {
+            font-size: 36px;
+            color: #fff;
+            margin-bottom: 20px;
             font-family: "Mooli", sans-serif;
         }
 
-        #startRecognition:hover {
+        #startRecognition {
+            width: 150px;
+            height: 50px;
+            background-color: rgb(204, 130, 219);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            margin-bottom: 20px;
+            font-family: "Mooli", sans-serif;
             cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #startRecognition:hover {
             background-color: rgb(195, 114, 219);
         }
 
         #textData {
             color: white;
-            font-family: "Work Sans", sans-serif;
             font-weight: bold;
+            font-size: 18px;
         }
     </style>
 </head>
 
 <body>
     <div class="mainContent">
-        <button id="startRecognition">Start Recognition</button>
-        <p id="textData"></p>
+        <h1>Welcome to Your Virtual Assistant</h1>
+        <button id="startRecognition">Start Listening</button>
+        <p id="textData">Hey! Ishan, How can I assist you today? 🚀</p>
     </div>
     <script>
         const start = document.getElementById('startRecognition');
         const textData = document.getElementById('textData');
+
         start.addEventListener('click', async () => {
             const recognition = new webkitSpeechRecognition();
             recognition.onresult = async ({ results }) => {

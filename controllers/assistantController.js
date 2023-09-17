@@ -1,6 +1,8 @@
 const say = require('say');
-const searchWikipedia = require('../services/wikipediaService');
 const opn = require('opn');
+
+const searchWikipedia = require('../services/wikipediaService');
+const callChatGPT = require('../services/gptService')
 
 module.exports = {
     virtualAssistant: async (req, res) => {
@@ -23,8 +25,8 @@ module.exports = {
             } else if (search === 'open youtube') {
                 say.speak('Opening youtube')
                 await opn('https://www.youtube.com/');
-            } else if (search === 'open chatgpt') {
-                say.speak('Opening chatGpt')
+            } else if (search === 'open chat gpt') {
+                say.speak('Opening chat gpt')
                 await opn('https://chat.openai.com/');
             } else if (search === 'open google') {
                 say.speak('Opening google')
@@ -36,14 +38,13 @@ module.exports = {
             else if (search === 'open instagram') {
                 say.speak('Opening Instagram')
                 await opn('https://www.instagram.com/')
-            }
-            else if (search.startsWith('search on google ')) {
-                search = search.replace('search on google ', '');
-                await opn(`https://www.google.com/search?q=${search}`)
-                say.speak(`Searching on google ${search}`)
+            } else if (search === "hey assistant") {
+                say.speak("Hello! Ishan, How I can help you")
             }
             else {
-                say.speak("Sorry, Not Found");
+                const chatGptResponse = await callChatGPT(search)
+                console.log(chatGptResponse)
+                say.speak(chatGptResponse)
             }
         } catch (error) {
             console.error(error);
